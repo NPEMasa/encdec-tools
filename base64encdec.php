@@ -1,9 +1,9 @@
 <?php
 
 $text = "";
-if(!empty($_POST['text']) && !empty($_POST['flg'])){
-    $text = htmlspecialchars($_POST['text']);
-    $flg = htmlspecialchars($_POST['flg']);
+if(!empty($_POST['text'] && !empty($_POST['flg']))){
+    $text = ($_POST['text']);
+    $flg = ($_POST['flg']);
 
     if($flg === "Encode"){
         $res = base64_encode($text);
@@ -13,7 +13,7 @@ if(!empty($_POST['text']) && !empty($_POST['flg'])){
         if(preg_match($ptn, $res)){
           $replacements = "";
           $res = preg_replace($ptn, $replacements, $res);
-          echo "<font color='red'><h4>textarea tag id danger. replacement in BLANK.</h4></font>"; 
+          echo "<font color='red'><h4>textarea tag id danger. replacement in BLANK.</h4></font>";
         }
     }
 }
@@ -31,7 +31,7 @@ if(!empty($_POST['text']) && !empty($_POST['flg'])){
       &nbsp;&nbsp;Decode
       <input type="radio" name="flg" value="Decode">
       </p>
-      <textarea rows="5" cols="50" name="text"></textarea><br>
+      <textarea rows="5" cols="50" name="text"><?php if(!empty($text)){ echo $text; } ?></textarea><br>
       <input type="submit" name="submit" value="submit" >
     </form>
       <pre><textarea rows="5" cols="50" name="res"><?php if(!empty($res)){ echo $res; } ?></textarea></pre>
