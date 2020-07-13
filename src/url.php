@@ -2,13 +2,15 @@
 
 $text = "";
 if(!empty($_POST['text']) && !empty($_POST['flg'])){
-    $text = htmlspecialchars($_POST['text']);
-    $flg = htmlspecialchars($_POST['flg']);
+    #$text = htmlspecialchars($_POST['text']);
+    #$flg = htmlspecialchars($_POST['flg']);
+    $text = ($_POST['text']);
+    $flg = ($_POST['flg']);
 
     if($flg === "Encode"){
-        $res = urlencode($text);
+        $res = htmlspecialchars(urlencode($text));
     }elseif($flg === "Decode"){
-        $res = urldecode($text);
+        $res = htmlspecialchars(urldecode($text));
         $ptn = "/<\/textarea>/s";
         if(preg_match($ptn, $res)){
           $replacements = "";
@@ -20,22 +22,50 @@ if(!empty($_POST['text']) && !empty($_POST['flg'])){
 
 ?>
 <html>
+
   <head>
     <title> encode && decode tool </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" href="css/base64.css">
+
   </head>
   <body>
-    <h3>URL Encode & Decode tool</h3>
-    <div id="test" align="left">
-    <form action="#" method="post">
-      <p>Encode
-      <input type="radio" name="flg" value="Encode">
-      &nbsp;&nbsp;Decode
-      <input type="radio" name="flg" value="Decode">
-      </p>
-      <textarea rows="5" cols="50" name="text"></textarea><br>
-      <input type="submit" name="submit" value="submit" >
-    </form>
-      <pre><textarea rows="5" cols="50" name="res"><?php if(!empty($res)){ echo $res; } ?></textarea></pre>
-    </div>
+
+    <main role="main" class="container">
+
+      <div class="content">
+
+      <h3>URL Encode & Decode tool</h3>
+
+      <div class="form-class">
+        <form action="#" method="post">
+
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flg" id="flg1" value="Encode" checked>
+              <label class="form-check-label" for="flg1">Encode</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flg" id="flg2" value="Decode">
+              <label class="form-check-label" for="flg2">Decode</label>
+            </div>
+            <br>
+
+              <textarea rows="5" cols="50" name="text" placeholder="text"><?php if(!empty($text)){ echo $text; } ?></textarea><br><br>
+              <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+        <pre><textarea rows="5" cols="50" name="res" placeholder="converted text"><?php if(!empty($res)){ echo $res; } ?></textarea></pre>
+      </div>
+
+      </div>
+
+    </main>
+
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/bootstrap.js"></script>
   </body>
 </html>
