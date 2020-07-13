@@ -1,6 +1,7 @@
 # Encode and Decode Tools
 
-This tools at HTML und PHP Based.
+These tools are convert text.
+
 
 ## Description
 
@@ -14,7 +15,7 @@ The Simple tool sets.
 
 ## Requirement
 
-- PHP(v5.x)
+- PHP(v7.x or v5.x)
 
 ## Installation
 
@@ -22,5 +23,5 @@ The Simple tool sets.
 
 ## Author
 
-[@RaspERMasa](https://twitter.com/RaspERMasa)
+[@npemasa50](https://twitter.com/npemasa50)
 
