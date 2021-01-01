@@ -2,15 +2,13 @@
 
 $text = "";
 if(!empty($_POST['text']) && !empty($_POST['flg'])){
-    #$text = htmlspecialchars($_POST['text']);
-    #$flg = htmlspecialchars($_POST['flg']);
     $text = ($_POST['text']);
     $flg = ($_POST['flg']);
 
     if($flg === "Encode"){
-        $res = htmlspecialchars(urlencode($text));
+        $res = htmlspecialchars(urlencode($text), ENT_QUOTES, 'UTF-8');
     }elseif($flg === "Decode"){
-        $res = htmlspecialchars(urldecode($text));
+        $res = htmlspecialchars(urldecode($text), ENT_QUOTES, 'UTF-8');
         $ptn = "/<\/textarea>/s";
         if(preg_match($ptn, $res)){
           $replacements = "";
@@ -19,6 +17,7 @@ if(!empty($_POST['text']) && !empty($_POST['flg'])){
         }
     }
 }
+$text = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
 
 ?>
 <html>
