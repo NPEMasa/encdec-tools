@@ -1,9 +1,8 @@
 <?php
 
-#$text = "";
 if(isset($_POST['text']) && isset($_POST['flg'])){
-    $text = ($_POST['text']);
-    $flg = ($_POST['flg']);
+    $text = htmlspecialchars($_POST['text'], ENT_QUOTES, 'UTF-8');
+    $flg = htmlspecialchars($_POST['flg'], ENT_QUOTES, 'UTF-8');
 
     if($flg === "Encode"){
         $res = base64_encode($text);
